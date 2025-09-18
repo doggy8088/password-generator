@@ -157,16 +157,16 @@ function App() {
   return (
     <div className="min-h-screen bg-background p-6 slide-up">
       <div className="max-w-4xl mx-auto">
-        {/* 標題區域 - 增加視覺層次和動畫 */}
-        <div className="text-center mb-12 bounce-in">
+        {/* 標題區域 */}
+        <div className="text-center mb-12">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 float-animation">
+            <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20">
               <Lock size={32} className="text-primary" />
             </div>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent shimmer-text">
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
               隨機密碼產生器
             </h1>
-            <div className="p-3 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/20 float-animation" style={{ animationDelay: '0.5s' }}>
+            <div className="p-3 rounded-2xl bg-gradient-to-br from-accent/20 to-primary/20">
               <Sparkle size={32} className="text-accent" />
             </div>
           </div>
