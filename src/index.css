@@ -8,26 +8,33 @@
 }
 
 :root {
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.2 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0 0);
-  --primary: oklch(0.6 0.15 240);
+  --background: oklch(0.97 0.02 280);
+  --foreground: oklch(0.15 0.05 280);
+  --card: oklch(1 0.01 280);
+  --card-foreground: oklch(0.15 0.05 280);
+  --popover: oklch(1 0.01 280);
+  --popover-foreground: oklch(0.15 0.05 280);
+  --primary: oklch(0.62 0.25 260);
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.2 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.7 0.15 140);
-  --accent-foreground: oklch(0.2 0 0);
-  --destructive: oklch(0.65 0.2 25);
+  --secondary: oklch(0.94 0.03 280);
+  --secondary-foreground: oklch(0.25 0.05 280);
+  --muted: oklch(0.96 0.02 280);
+  --muted-foreground: oklch(0.55 0.05 280);
+  --accent: oklch(0.68 0.2 320);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.65 0.22 25);
   --destructive-foreground: oklch(1 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: oklch(0.6 0.15 240);
-  --radius: 0.75rem;
+  --border: oklch(0.88 0.03 280);
+  --input: oklch(0.88 0.03 280);
+  --ring: oklch(0.62 0.25 260);
+  --radius: 1rem;
+  
+  /* 漸層顏色變數 */
+  --gradient-primary: linear-gradient(135deg, oklch(0.68 0.25 240), oklch(0.62 0.3 280));
+  --gradient-secondary: linear-gradient(135deg, oklch(0.72 0.2 320), oklch(0.68 0.25 350));
+  --gradient-accent: linear-gradient(135deg, oklch(0.75 0.18 160), oklch(0.68 0.22 140));
+  --gradient-danger: linear-gradient(135deg, oklch(0.7 0.25 15), oklch(0.65 0.28 35));
+  --gradient-bg: radial-gradient(ellipse at top, oklch(0.98 0.05 280), oklch(0.97 0.02 260));
 }
 
 @theme {
@@ -61,4 +68,82 @@
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--gradient-bg);
+}
+
+/* 動畫關鍵幀 */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.62 0.25 260 / 0.3); }
+  50% { box-shadow: 0 0 40px oklch(0.62 0.25 260 / 0.6); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3) rotate(-5deg); opacity: 0; }
+  50% { transform: scale(1.05) rotate(1deg); }
+  70% { transform: scale(0.9) rotate(-0.5deg); }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* 漸層按鈕樣式 */
+.gradient-button {
+  background: var(--gradient-primary);
+  transition: all 0.3s ease;
+}
+
+.gradient-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px oklch(0.62 0.25 260 / 0.4);
+}
+
+.gradient-button:active {
+  transform: translateY(0);
+}
+
+/* 閃爍效果 */
+.shimmer-text {
+  background: linear-gradient(90deg, 
+    transparent, 
+    oklch(0.75 0.25 280 / 0.8), 
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* 浮動動畫 */
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 發光邊框 */
+.glow-border {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* 彈跳進入動畫 */
+.bounce-in {
+  animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* 滑入動畫 */
+.slide-up {
+  animation: slide-up 0.5s ease-out;
 }
