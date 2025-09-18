@@ -8,6 +8,7 @@
 }
 
 :root {
+  /* 淺色主題 */
   --background: oklch(0.97 0.02 280);
   --foreground: oklch(0.15 0.05 280);
   --card: oklch(1 0.01 280);
@@ -35,6 +36,36 @@
   --gradient-accent: linear-gradient(135deg, oklch(0.75 0.18 160), oklch(0.68 0.22 140));
   --gradient-danger: linear-gradient(135deg, oklch(0.7 0.25 15), oklch(0.65 0.28 35));
   --gradient-bg: radial-gradient(ellipse at top, oklch(0.98 0.05 280), oklch(0.97 0.02 260));
+}
+
+.dark {
+  /* 深色主題 */
+  --background: oklch(0.08 0.02 280);
+  --foreground: oklch(0.95 0.02 280);
+  --card: oklch(0.12 0.02 280);
+  --card-foreground: oklch(0.95 0.02 280);
+  --popover: oklch(0.12 0.02 280);
+  --popover-foreground: oklch(0.95 0.02 280);
+  --primary: oklch(0.7 0.25 260);
+  --primary-foreground: oklch(0.1 0.02 280);
+  --secondary: oklch(0.18 0.02 280);
+  --secondary-foreground: oklch(0.85 0.02 280);
+  --muted: oklch(0.15 0.02 280);
+  --muted-foreground: oklch(0.65 0.02 280);
+  --accent: oklch(0.72 0.2 320);
+  --accent-foreground: oklch(0.1 0.02 280);
+  --destructive: oklch(0.7 0.22 25);
+  --destructive-foreground: oklch(0.95 0.02 280);
+  --border: oklch(0.22 0.02 280);
+  --input: oklch(0.22 0.02 280);
+  --ring: oklch(0.7 0.25 260);
+  
+  /* 深色主題漸層顏色變數 */
+  --gradient-primary: linear-gradient(135deg, oklch(0.68 0.25 240), oklch(0.72 0.3 280));
+  --gradient-secondary: linear-gradient(135deg, oklch(0.72 0.2 320), oklch(0.68 0.25 350));
+  --gradient-accent: linear-gradient(135deg, oklch(0.75 0.18 160), oklch(0.68 0.22 140));
+  --gradient-danger: linear-gradient(135deg, oklch(0.7 0.25 15), oklch(0.65 0.28 35));
+  --gradient-bg: radial-gradient(ellipse at top, oklch(0.12 0.05 280), oklch(0.08 0.02 260));
 }
 
 @theme {
@@ -146,4 +177,18 @@ body {
 /* 滑入動畫 */
 .slide-up {
   animation: slide-up 0.5s ease-out;
+}
+
+/* 主題切換動畫 */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+/* 主題圖標動畫 */
+.theme-icon {
+  transition: transform 0.3s ease;
+}
+
+.theme-icon:hover {
+  transform: rotate(180deg);
 }

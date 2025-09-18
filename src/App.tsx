@@ -17,7 +17,10 @@ import {
   Lightning,
   Crown,
   Heart,
-  Star
+  Star,
+  Sun,
+  Moon,
+  Monitor
 } from '@phosphor-icons/react'
 import { toast } from 'sonner'
 import { useKV } from '@github/spark/hooks'
@@ -30,6 +33,8 @@ interface PasswordOptions {
   includeSymbols: boolean
 }
 
+type Theme = 'light' | 'dark' | 'system'
+
 const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz'
 const NUMBERS = '0123456789'
@@ -40,6 +45,7 @@ function App() {
   const [isGenerating, setIsGenerating] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
   const [copySuccess, setCopySuccess] = useState(false)
+  const [theme, setTheme] = useKV<Theme>('theme-preference', 'system')
   const [options, setOptions] = useKV<PasswordOptions>('password-options', {
     length: 16,
     includeUppercase: true,
@@ -47,6 +53,60 @@ function App() {
     includeNumbers: true,
     includeSymbols: false
   })
+
+  // 主題管理
+  const applyTheme = useCallback((themeValue: Theme) => {
+    const root = document.documentElement
+    
+    if (themeValue === 'system') {
+      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+      root.classList.toggle('dark', systemTheme === 'dark')
+    } else {
+      root.classList.toggle('dark', themeValue === 'dark')
+    }
+  }, [])
+
+  const cycleTheme = () => {
+    if (!theme) return
+    
+    const themeOrder: Theme[] = ['system', 'light', 'dark']
+    const currentIndex = themeOrder.indexOf(theme)
+    const nextTheme = themeOrder[(currentIndex + 1) % themeOrder.length]
+    
+    setTheme(nextTheme)
+    
+    const themeLabels = {
+      system: '🖥️ 跟隨系統',
+      light: '☀️ 淺色模式',
+      dark: '🌙 深色模式'
+    }
+    
+    toast.success(`已切換到 ${themeLabels[nextTheme]}`)
+  }
+
+  // 監聽系統主題變化
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    
+    const handleSystemThemeChange = () => {
+      if (theme === 'system') {
+        applyTheme('system')
+      }
+    }
+    
+    mediaQuery.addEventListener('change', handleSystemThemeChange)
+    
+    return () => {
+      mediaQuery.removeEventListener('change', handleSystemThemeChange)
+    }
+  }, [theme, applyTheme])
+
+  // 應用主題
+  useEffect(() => {
+    if (theme) {
+      applyTheme(theme)
+    }
+  }, [theme, applyTheme])
 
   const generatePassword = useCallback(() => {
     if (!options) return
@@ -149,16 +209,40 @@ function App() {
     }
   }, [generatePassword, options])
 
-  if (!options) return null
+  if (!options || !theme) return null
 
   const strength = calculateStrength(password)
   const StrengthIcon = strength.icon
+
+  const getThemeIcon = () => {
+    switch (theme) {
+      case 'light': return Sun
+      case 'dark': return Moon
+      case 'system': return Monitor
+      default: return Monitor
+    }
+  }
+
+  const ThemeIcon = getThemeIcon()
 
   return (
     <div className="min-h-screen bg-background p-6 slide-up">
       <div className="max-w-4xl mx-auto">
         {/* 標題區域 */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-12 relative">
+          {/* 主題切換按鈕 - 放在右上角 */}
+          <div className="absolute top-0 right-0">
+            <Button
+              onClick={cycleTheme}
+              variant="outline"
+              size="icon"
+              className="rounded-xl hover:scale-105 transition-all duration-300 border-2"
+              title={`當前主題：${theme === 'system' ? '跟隨系統' : theme === 'light' ? '淺色' : '深色'}`}
+            >
+              <ThemeIcon size={20} className="theme-icon" />
+            </Button>
+          </div>
+
           <div className="flex items-center justify-center gap-3 mb-4">
             <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20">
               <Lock size={32} className="text-primary" />
