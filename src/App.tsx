@@ -280,9 +280,9 @@ function App() {
               </div>
             </div>
             
-            <div className="flex items-center gap-4">
-              <Badge className={`${strength.color} text-white px-4 py-2 text-sm font-bold rounded-xl shadow-lg flex items-center gap-2`}>
-                <StrengthIcon size={16} />
+            <div className="flex items-stretch gap-4">
+              <Badge className={`${strength.color} text-white px-6 py-4 text-base font-bold rounded-2xl shadow-lg flex items-center gap-2 h-20`}>
+                <StrengthIcon size={20} />
                 {strength.text}
               </Badge>
               
@@ -291,28 +291,28 @@ function App() {
                 disabled={isGenerating}
                 variant="outline"
                 size="icon"
-                className="h-14 w-14 rounded-2xl border-2 hover:scale-110 transition-all duration-300"
+                className="h-20 w-20 rounded-2xl border-2 hover:scale-110 transition-all duration-300"
               >
                 <ArrowClockwise 
-                  size={24} 
+                  size={28} 
                   className={isGenerating ? 'animate-spin' : ''} 
                 />
               </Button>
               
               <Button
                 onClick={copyToClipboard}
-                className={`h-14 px-8 rounded-2xl font-semibold gradient-button transition-all duration-300 ${
+                className={`h-20 px-8 rounded-2xl font-semibold gradient-button transition-all duration-300 text-base ${
                   copySuccess ? 'bg-green-500 hover:bg-green-600' : ''
                 }`}
               >
                 {copySuccess ? (
                   <>
-                    <CheckCircle size={20} className="mr-2" />
+                    <CheckCircle size={24} className="mr-2" />
                     已複製！
                   </>
                 ) : (
                   <>
-                    <Copy size={20} className="mr-2" />
+                    <Copy size={24} className="mr-2" />
                     複製密碼
                   </>
                 )}
