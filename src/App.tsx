@@ -385,47 +385,51 @@ function App() {
               <h3 className="text-lg font-semibold">使用的字元類型：</h3>
             </div>
             
-            <div className="space-y-4">
-              <div className="flex items-center space-x-3 p-3 rounded-xl hover:bg-muted/50 transition-colors">
+            <div className="space-y-2">
+              <div className="flex items-center space-x-3 p-2 rounded-xl hover:bg-muted/50 transition-colors">
                 <Checkbox
                   id="uppercase"
                   checked={options.includeUppercase}
                   onCheckedChange={(checked) => updateOption('includeUppercase', !!checked)}
+                  className="border-2 data-[state=unchecked]:border-border data-[state=unchecked]:bg-background"
                 />
-                <label htmlFor="uppercase" className="text-sm font-medium flex items-center gap-2">
+                <label htmlFor="uppercase" className="text-sm font-medium flex items-center gap-2 cursor-pointer">
                   🔤 大寫字母 (ABC)
                 </label>
               </div>
               
-              <div className="flex items-center space-x-3 p-3 rounded-xl hover:bg-muted/50 transition-colors">
+              <div className="flex items-center space-x-3 p-2 rounded-xl hover:bg-muted/50 transition-colors">
                 <Checkbox
                   id="lowercase"
                   checked={options.includeLowercase}
                   onCheckedChange={(checked) => updateOption('includeLowercase', !!checked)}
+                  className="border-2 data-[state=unchecked]:border-border data-[state=unchecked]:bg-background"
                 />
-                <label htmlFor="lowercase" className="text-sm font-medium flex items-center gap-2">
+                <label htmlFor="lowercase" className="text-sm font-medium flex items-center gap-2 cursor-pointer">
                   🔡 小寫字母 (abc)
                 </label>
               </div>
               
-              <div className="flex items-center space-x-3 p-3 rounded-xl hover:bg-muted/50 transition-colors">
+              <div className="flex items-center space-x-3 p-2 rounded-xl hover:bg-muted/50 transition-colors">
                 <Checkbox
                   id="numbers"
                   checked={options.includeNumbers}
                   onCheckedChange={(checked) => updateOption('includeNumbers', !!checked)}
+                  className="border-2 data-[state=unchecked]:border-border data-[state=unchecked]:bg-background"
                 />
-                <label htmlFor="numbers" className="text-sm font-medium flex items-center gap-2">
+                <label htmlFor="numbers" className="text-sm font-medium flex items-center gap-2 cursor-pointer">
                   🔢 數字 (123)
                 </label>
               </div>
               
-              <div className="flex items-center space-x-3 p-3 rounded-xl hover:bg-muted/50 transition-colors">
+              <div className="flex items-center space-x-3 p-2 rounded-xl hover:bg-muted/50 transition-colors">
                 <Checkbox
                   id="symbols"
                   checked={options.includeSymbols}
                   onCheckedChange={(checked) => updateOption('includeSymbols', !!checked)}
+                  className="border-2 data-[state=unchecked]:border-border data-[state=unchecked]:bg-background"
                 />
-                <label htmlFor="symbols" className="text-sm font-medium flex items-center gap-2">
+                <label htmlFor="symbols" className="text-sm font-medium flex items-center gap-2 cursor-pointer">
                   ⚡ 特殊符號 (#$&)
                 </label>
               </div>
