@@ -184,6 +184,26 @@ body {
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
+/* 密碼強度邊框動畫 */
+.password-strength-border {
+  animation: strength-reveal 0.8s ease-out;
+}
+
+@keyframes strength-reveal {
+  0% { 
+    border-color: var(--border);
+    transform: scale(0.98);
+    box-shadow: none;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% { 
+    transform: scale(1);
+    box-shadow: 0 0 20px currentColor;
+  }
+}
+
 /* 主題圖標動畫 */
 .theme-icon {
   transition: transform 0.3s ease;

@@ -43,7 +43,6 @@ const SYMBOLS = '!@#$%^&*()_+-=[]{}|;:,.<>?'
 function App() {
   const [password, setPassword] = useState('')
   const [isGenerating, setIsGenerating] = useState(false)
-  const [showSuccess, setShowSuccess] = useState(false)
   const [copySuccess, setCopySuccess] = useState(false)
   const [theme, setTheme] = useKV<Theme>('theme-preference', 'system')
   const [options, setOptions] = useKV<PasswordOptions>('password-options', {
@@ -142,8 +141,6 @@ function App() {
       
       setPassword(result)
       setIsGenerating(false)
-      setShowSuccess(true)
-      setTimeout(() => setShowSuccess(false), 2000)
     }, 800)
   }, [options, setOptions])
 
@@ -157,10 +154,9 @@ function App() {
     if (/[^A-Za-z0-9]/.test(pwd)) score += 1
     if (pwd.length >= 16) score += 1
 
-    if (score <= 2) return { level: '弱', color: 'bg-gradient-to-r from-red-500 to-red-600', text: '弱', icon: Shield }
-    if (score <= 4) return { level: '中等', color: 'bg-gradient-to-r from-yellow-500 to-orange-500', text: '中等', icon: Key }
-    if (score <= 6) return { level: '強', color: 'bg-gradient-to-r from-blue-500 to-purple-500', text: '強', icon: Lightning }
-    return { level: '非常強', color: 'bg-gradient-to-r from-green-500 to-emerald-600', text: '非常強', icon: Crown }
+    if (score <= 2) return { level: '弱', borderColor: 'border-red-500' }
+    if (score <= 4) return { level: '中等', borderColor: 'border-orange-500' }
+    return { level: '強', borderColor: 'border-green-500' }
   }
 
   const copyToClipboard = async () => {
@@ -212,7 +208,6 @@ function App() {
   if (!options || !theme) return null
 
   const strength = calculateStrength(password)
-  const StrengthIcon = strength.icon
 
   const getThemeIcon = () => {
     switch (theme) {
@@ -263,7 +258,9 @@ function App() {
         <Card className="p-8 mb-8 glow-border backdrop-blur-sm bg-card/80 border-2">
           <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
             <div className="flex-1 min-w-0 relative">
-              <div className="bg-gradient-to-br from-muted/50 to-muted/30 border-2 border-dashed border-border rounded-2xl p-6 relative overflow-hidden">
+              <div className={`bg-gradient-to-br from-muted/50 to-muted/30 border-4 rounded-2xl p-6 relative overflow-hidden transition-all duration-1000 ${
+                isGenerating ? 'border-dashed border-border animate-pulse' : `${strength.borderColor} border-solid password-strength-border`
+              }`}>
                 {isGenerating && (
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/20 to-transparent animate-pulse" />
                 )}
@@ -272,20 +269,10 @@ function App() {
                 }`}>
                   {password || '🔄 正在生成密碼...'}
                 </p>
-                {showSuccess && (
-                  <div className="absolute top-2 right-2">
-                    <CheckCircle size={24} className="text-green-500 bounce-in" />
-                  </div>
-                )}
               </div>
             </div>
             
             <div className="flex items-stretch gap-4">
-              <Badge className={`${strength.color} text-white px-6 py-4 text-base font-bold rounded-2xl shadow-lg flex items-center gap-2 h-20`}>
-                <StrengthIcon size={20} />
-                {strength.text}
-              </Badge>
-              
               <Button
                 onClick={generatePassword}
                 disabled={isGenerating}
@@ -301,20 +288,15 @@ function App() {
               
               <Button
                 onClick={copyToClipboard}
-                className={`h-20 px-8 rounded-2xl font-semibold gradient-button transition-all duration-300 text-base ${
+                className={`h-20 w-20 rounded-2xl font-semibold gradient-button transition-all duration-300 text-base ${
                   copySuccess ? 'bg-green-500 hover:bg-green-600' : ''
                 }`}
+                size="icon"
               >
                 {copySuccess ? (
-                  <>
-                    <CheckCircle size={24} className="mr-2" />
-                    已複製！
-                  </>
+                  <CheckCircle size={24} />
                 ) : (
-                  <>
-                    <Copy size={24} className="mr-2" />
-                    複製密碼
-                  </>
+                  <Copy size={24} />
                 )}
               </Button>
             </div>
