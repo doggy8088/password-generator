@@ -39,7 +39,10 @@ npm run preview
 
 This application includes Chinese text and requires CJK (Chinese, Japanese, Korean) fonts for proper rendering:
 
-**Automatic Installation:**
+**GitHub Copilot Coding Agent:**
+CJK fonts are automatically installed via `.github/workflows/copilot-setup-steps.yml` when the agent runs.
+
+**Local Development:**
 ```bash
 npm run install-fonts
 ```
