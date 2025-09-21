@@ -14,7 +14,16 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     echo "Installing Noto CJK fonts..."
     
     sudo apt-get update
-    sudo apt-get install -y fonts-noto-cjk fonts-wqy-zenhei fontconfig
+    sudo apt-get install -y \
+      fonts-noto-cjk \
+      fonts-noto-cjk-extra \
+      fonts-wqy-zenhei \
+      fonts-wqy-microhei \
+      fonts-arphic-ukai \
+      fonts-arphic-uming \
+      fonts-arphic-bkai00mp \
+      fonts-arphic-bsmi00lp \
+      fontconfig
     
     # Refresh font cache
     sudo fc-cache -fv
@@ -65,9 +74,13 @@ fi
 echo ""
 echo "🎯 Font installation complete!"
 echo "The following fonts should now be available:"
-echo "  - Noto Sans CJK (Simplified Chinese)"
-echo "  - Noto Sans CJK (Traditional Chinese)"
-echo "  - Source Han Sans"
+echo "  - Noto Sans CJK (Simplified & Traditional Chinese)"
+echo "  - Noto Sans CJK Extra (all weights)"
+echo "  - AR PL UKai TW (Traditional Chinese Kaiti)"
+echo "  - AR PL UMing TW (Traditional Chinese Ming)"
+echo "  - AR PL KaitiM Big5 (Traditional Chinese Kaiti)"
+echo "  - WenQuanYi Zen Hei (Chinese sans-serif)"
+echo "  - WenQuanYi Micro Hei (Chinese micro sans-serif)"
 echo ""
 echo "🧪 Test the installation by running the development server:"
 echo "  npm run dev"

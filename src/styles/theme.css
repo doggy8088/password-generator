@@ -246,13 +246,15 @@
     --color-focus-ring: var(--color-accent-9);
 
     /* Fonts */
-    --font-sans-serif: ui-sans-serif, system-ui, "Noto Sans CJK SC", "Noto Sans CJK TC", 
-      "Source Han Sans", "Microsoft YaHei", "微软雅黑", sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-serif: ui-serif, "Noto Serif CJK SC", "Noto Serif CJK TC", Georgia, Cambria, 
-      "Times New Roman", Times, serif;
-    --font-monospace: ui-monospace, "Noto Sans Mono CJK SC", "Source Han Mono", SFMono-Regular, 
-      Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --font-sans-serif: ui-sans-serif, system-ui, "Noto Sans CJK TC", "Noto Sans CJK SC",
+      "AR PL UMing TW", "AR PL UKai TW", "WenQuanYi Zen Hei", "WenQuanYi Micro Hei",
+      "Source Han Sans TC", "Source Han Sans", "Microsoft YaHei", "微软雅黑", sans-serif, 
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-serif: ui-serif, "Noto Serif CJK TC", "Noto Serif CJK SC", "AR PL UMing TW",
+      "AR PL KaitiM Big5", Georgia, Cambria, "Times New Roman", Times, serif;
+    --font-monospace: ui-monospace, "Noto Sans Mono CJK TC", "Noto Sans Mono CJK SC", 
+      "Source Han Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", 
+      "Courier New", monospace;
     --font-family: var(--font-sans-serif);
   }
 
