@@ -1,0 +1,25 @@
+name: Setup CJK fonts for GitHub Copilot Coding Agent
+
+on:
+  workflow_dispatch:
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install CJK fonts
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y fonts-noto-cjk fonts-wqy-zenhei fontconfig
+          sudo fc-cache -fv
+          
+      - name: Set locale for CJK support
+        run: |
+          echo "LANG=zh_TW.UTF-8" >> $GITHUB_ENV
+          echo "LC_ALL=zh_TW.UTF-8" >> $GITHUB_ENV
+          echo "FONTCONFIG_PATH=/etc/fonts" >> $GITHUB_ENV
+          
+      - name: Verify font installation
+        run: |
+          fc-list | grep -i "noto\|cjk" | head -5
+          echo "CJK fonts installed successfully for GitHub Copilot Coding Agent"
