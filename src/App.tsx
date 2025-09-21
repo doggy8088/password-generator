@@ -429,6 +429,31 @@ function App() {
             <Shield size={16} className="text-green-500" />
           </div>
         </div>
+
+        {/* Footer */}
+        <div className="mt-12 pb-6 text-center">
+          <p className="text-sm text-muted-foreground">
+            本網站由{' '}
+            <a 
+              href="https://blog.miniasp.com/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors underline underline-offset-2"
+            >
+              Will 保哥
+            </a>
+            {' '}建置與維護，歡迎追蹤我的{' '}
+            <a 
+              href="https://www.facebook.com/will.fans/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-primary hover:text-primary/80 transition-colors underline underline-offset-2"
+            >
+              Will 保哥的技術交流中心
+            </a>
+            {' '}粉絲團
+          </p>
+        </div>
       </div>
     </div>
   )
