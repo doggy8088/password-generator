@@ -22,6 +22,9 @@ A secure, modern password generator built with React, TypeScript, and GitHub Spa
 # Install dependencies
 npm install
 
+# Install CJK fonts for proper Chinese character rendering
+npm run install-fonts
+
 # Start development server
 npm run dev
 
@@ -31,6 +34,37 @@ npm run build
 # Preview production build
 npm run preview
 ```
+
+### 🔤 CJK Font Support
+
+This application includes Chinese text and requires CJK (Chinese, Japanese, Korean) fonts for proper rendering:
+
+**Automatic Installation:**
+```bash
+npm run install-fonts
+```
+
+**Manual Installation:**
+
+*Ubuntu/Debian:*
+```bash
+sudo apt-get install fonts-noto-cjk fonts-wqy-zenhei
+sudo fc-cache -fv
+```
+
+*macOS:*
+```bash
+brew install --cask font-noto-sans-cjk
+```
+
+*Windows:*
+Download and install from [Google Noto Fonts](https://fonts.google.com/noto/specimen/Noto+Sans)
+
+The following fonts are configured with fallbacks:
+- **Noto Sans CJK SC** (Simplified Chinese)
+- **Noto Sans CJK TC** (Traditional Chinese)  
+- **Source Han Sans** (Adobe's CJK font)
+- **Microsoft YaHei** (Windows fallback)
 
 ## 🌐 Deployment
 
