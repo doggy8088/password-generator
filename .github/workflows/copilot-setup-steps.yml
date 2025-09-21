@@ -15,8 +15,8 @@ jobs:
           
       - name: Set locale for CJK support
         run: |
-          echo "LANG=zh_CN.UTF-8" >> $GITHUB_ENV
-          echo "LC_ALL=zh_CN.UTF-8" >> $GITHUB_ENV
+          echo "LANG=zh_TW.UTF-8" >> $GITHUB_ENV
+          echo "LC_ALL=zh_TW.UTF-8" >> $GITHUB_ENV
           echo "FONTCONFIG_PATH=/etc/fonts" >> $GITHUB_ENV
           
       - name: Verify font installation

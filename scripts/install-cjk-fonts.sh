@@ -21,8 +21,8 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then
     
     # Set locale environment variables
     echo "🌐 Setting locale environment variables..."
-    echo "export LANG=zh_CN.UTF-8" >> ~/.bashrc
-    echo "export LC_ALL=zh_CN.UTF-8" >> ~/.bashrc
+    echo "export LANG=zh_TW.UTF-8" >> ~/.bashrc
+    echo "export LC_ALL=zh_TW.UTF-8" >> ~/.bashrc
     
     echo "✅ CJK fonts installed successfully on Linux!"
     echo "Please restart your terminal or run: source ~/.bashrc"
