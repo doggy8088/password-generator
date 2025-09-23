@@ -51,7 +51,9 @@ npm run install-fonts
 
 *Ubuntu/Debian:*
 ```bash
-sudo apt-get install fonts-noto-cjk fonts-wqy-zenhei
+sudo apt-get install fonts-noto-cjk fonts-noto-cjk-extra fonts-wqy-zenhei \
+  fonts-wqy-microhei fonts-arphic-ukai fonts-arphic-uming \
+  fonts-arphic-bkai00mp fonts-arphic-bsmi00lp
 sudo fc-cache -fv
 ```
 
@@ -63,10 +65,14 @@ brew install --cask font-noto-sans-cjk
 *Windows:*
 Download and install from [Google Noto Fonts](https://fonts.google.com/noto/specimen/Noto+Sans)
 
-The following fonts are configured with fallbacks:
-- **Noto Sans CJK SC** (Simplified Chinese)
-- **Noto Sans CJK TC** (Traditional Chinese)  
-- **Source Han Sans** (Adobe's CJK font)
+The following fonts are configured with fallbacks for optimal Traditional Chinese rendering:
+- **Noto Sans CJK TC** (Traditional Chinese - Primary)
+- **Noto Sans CJK SC** (Simplified Chinese)  
+- **AR PL UMing TW** (Traditional Chinese Ming style)
+- **AR PL UKai TW** (Traditional Chinese Kaiti style)
+- **WenQuanYi Zen Hei** (Chinese sans-serif)
+- **WenQuanYi Micro Hei** (Chinese micro sans-serif)
+- **Source Han Sans TC** (Adobe's Traditional Chinese font)
 - **Microsoft YaHei** (Windows fallback)
 
 ## 🌐 Deployment
