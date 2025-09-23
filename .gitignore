@@ -32,3 +32,13 @@ pids
 .devcontainer/
 
 .spark-workbench-id
+
+# Playwright test results
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+test-results.json
+
+# Test artifacts and screenshots (keep for CI)
+# Note: Screenshots are valuable for visual testing verification
